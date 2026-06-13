@@ -81,3 +81,42 @@ Explanation:
 =================================================
 
 """
+
+
+class Animal:
+     
+    def __init__(self, name):
+          self.name = name
+
+    def speak(self):
+        print(f"{self.name} makes a sound")
+
+class Dog(Animal):
+     
+    def Speak(self):
+        print(f"{self.name} says Woof")
+
+class Cat(Animal):
+    
+    def speak(self):
+        print(f"{self.name} says Meow")
+
+class Cow(Animal):
+    
+    def speak(self):
+        print(f"{self.name} says Moo")
+
+
+dog_name = input("Enter the name of the dog: ")
+cat_name = input("Enter the name of the cat: ")
+cow_name = input("Enter the name of the cow: ")
+
+dog = Dog(dog_name)
+cat = Cat(cat_name)
+cow = Cow(cow_name)
+
+animals = [dog, cat, cow]
+
+for animal in animals:
+    animal.speak()
+    

@@ -99,3 +99,92 @@ Explanation:
 =================================================
 
 """
+
+
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+
+    def __init__(self, name):
+      self.name = name
+
+    @abstractmethod
+    def area(self):
+        pass
+
+    @abstractmethod
+    def perimeter(self):
+        pass
+
+class Circle(Shape):
+
+    def __init__(self, name, radius):
+        super().__init__(name)
+        self.radius = radius
+
+    def area(self):
+        return 3.14 * self.radius * self.radius
+    
+    def perimeter(self):
+        return 2 * 3.14 * self.radius
+    
+class Triangle(Shape):
+
+    def __init__(self, name, a, b, c):
+        super().__init__(name)
+        self.a = a
+        self.b = b
+        self.c = c
+        self.s = (a + b + c) / 2
+
+    def area(self):
+        return (self.s * (self.s - self.a) * (self.s - self.b) * (self.s - self.c)) ** 0.5
+    
+    def perimeter(self):
+        return self.s * 2
+    
+class Rectangle(Shape):
+
+    def __init__(self, name, length, width):
+        super().__init__(name)
+        self.width = width
+        self.length = length
+
+    def area(self):
+        return self.length * self.width
+    
+    def perimeter(self):
+        return 2 * (self.width + self.length)
+    
+
+try:
+
+    shape_name = input("Enter the name of the shape: ")
+
+    obj_Shape = Shape(shape_name)
+    res1 = obj_Shape.area()
+
+    print(res1)
+
+except TypeError:
+
+    print("Type Error!")
+
+
+circle_radius = int(input("Enter the radius of the circle: "))
+
+rectangle_width = int(input("Enter the width of the rectangle: "))
+rectangle_length = int(input("Enter the length of the rectangle: "))
+
+triangle_a = int(input("Enter the length of side a: "))
+triangle_b = int(input("Enter the length of side b: "))
+triangle_c = int(input("Enter the length of side c: "))
+
+shapes = [
+    Circle("Circle",circle_radius),
+    Rectangle("Rectangle",  rectangle_length, rectangle_width),
+    Triangle("Triangle", triangle_a, triangle_b, triangle_c)
+]
+
+for shape in shapes:
+    print(f"{shape.name} -> area={shape.area()}, perimeter={shape.perimeter()}")
